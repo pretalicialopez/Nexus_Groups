@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="hero">
+    <h2>{{ t['welcome'] }} à Nexus_Groups</h2>
+    <p>Votre banque en ligne sécurisée et moderne. Gérez vos finances facilement.</p>
+    <a class="button" href="/register">{{ t['create_account'] }}</a>
+</section>
+
+<section class="testimonials">
+    <h2>{{ t['testimonials'] }}</h2>
+    <div class="testimonial">
+        <p>"Nexus_Groups a simplifié la gestion de mes comptes. Très sécurisé !"</p>
+        <h4>– Alice M.</h4>
+    </div>
+    <div class="testimonial">
+        <p>"Le suivi des transactions en temps réel me permet de garder un contrôle total."</p>
+        <h4>– David R.</h4>
+    </div>
+    <div class="testimonial">
+        <p>"Service client rapide et toujours disponible. Je recommande !"</p>
+        <h4>– Sophia T.</h4>
+    </div>
+</section>
+{% endblock %}

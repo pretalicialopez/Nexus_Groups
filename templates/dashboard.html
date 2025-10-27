@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>{{ t['welcome'] }} {{ session['username'] }}</h2>
+<h3>{{ t['balance'] }} : {{ user_balance }} €</h3>
+
+<h3>{{ t['transactions'] }}</h3>
+<canvas id="balanceChart" width="400" height="200"></canvas>
+<table>
+    <tr>
+        <th>{{ t['user'] }}</th>
+        <th>{{ t['amount'] }}</th>
+        <th>Date</th>
+    </tr>
+    {% for t_item in transactions %}
+    <tr>
+        <td>{{ t_item[2] }}</td>
+        <td>{{ t_item[3] }} €</td>
+        <td>{{ t_item[4] }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+const ctx = document.getElementById('balanceChart').getContext('2d');
+const balanceChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+        labels: [{% for t_item in transactions %}'{{ t_item[4] }}',{% endfor %}],
+        datasets: [{
+            label: '{{ t["balance"] }}',
+            data: [{% for t_item in transactions %}{{ t_item[3] }},{% endfor %}],
+            borderColor: 'rgba(0, 64, 128, 1)',
+            backgroundColor: 'rgba(0, 64, 128, 0.2)',
+            fill: true
+        }]
+    }
+});
+</script>
+{% endblock %}

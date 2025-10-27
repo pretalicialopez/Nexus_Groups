@@ -1,0 +1,12 @@
+{
+    "welcome": "Bienvenue",
+    "balance": "Solde actuel",
+    "transactions": "Transactions",
+    "credit_account": "Créditer un compte",
+    "amount": "Montant",
+    "user": "Utilisateur",
+    "logout": "Se déconnecter",
+    "dashboard": "Tableau de bord",
+    "create_account": "Créer un compte",
+    "testimonials": "Témoignages"
+}

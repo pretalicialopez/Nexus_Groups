@@ -1,0 +1,19 @@
+# Ne jamais envoyer les variables secrètes
+.env
+
+# Dossier de l'environnement virtuel
+venv/
+
+# Cache Python
+__pycache__/
+*.pyc
+
+# Dossier utilisé par Flask
+instance/
+
+# Fichiers système Windows
+Thumbs.db
+Desktop.ini
+
+# Fichiers système MacOS
+.DS_Store

@@ -1,0 +1,11 @@
+body { font-family: 'Roboto', sans-serif; margin:0; background:#f4f6f8; }
+header { background:#00264d; color:white; padding:20px; text-align:center; }
+header nav a { color:white; margin:0 10px; text-decoration:none; }
+.hero { background:#e6f0ff; padding:60px 20px; text-align:center; }
+.hero .button { background:#004080; color:white; padding:10px 25px; border:none; border-radius:5px; text-decoration:none; }
+.testimonials { max-width:900px; margin:40px auto; text-align:center; }
+.testimonial { background:white; padding:20px; margin:20px; border-radius:10px; box-shadow:0 2px 8px rgba(0,0,0,0.1); }
+table { width:90%; margin:20px auto; border-collapse:collapse; }
+table, th, td { border:1px solid #ccc; }
+th, td { padding:10px; text-align:center; }
+footer { background:#00264d; color:white; text-align:center; padding:20px; margin-top:40px; }
