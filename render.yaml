@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: nexus-groups
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app
+    envVars:
+      - key: SECRET_KEY
+        value: ${SECRET_KEY}
+      - key: EMAIL_USER
+        value: ${EMAIL_USER}
+      - key: EMAIL_PASSWORD
+        value: ${EMAIL_PASSWORD}
