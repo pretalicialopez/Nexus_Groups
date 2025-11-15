@@ -29,11 +29,6 @@ def init_db():
     conn.close()
 
 init_db()
-conn = get_db_connection()
-cursor = conn.cursor()
-cursor.execute("INSERT INTO users (name, email, password) VALUES (Nexus-groupes, ?, ?)", (name, email, hashed_password))
-conn.commit()
-conn.close()
 def init_transactions():
     conn = get_db_connection()
     c = conn.cursor()
