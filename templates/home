@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block content %}
+
+<!-- HERO SECTION -->
+<section class="hero">
+    <h1>{% trans "Votre partenaire bancaire de confiance" %}</h1>
+    <p>{% trans "Gérez vos finances en toute sécurité avec Nexus Groups Bank." %}</p>
+    <a href="{% url 'register' %}" class="cta-btn">{% trans "Créer un compte" %}</a>
+</section>
+
+<!-- SERVICES -->
+<section id="services" class="services">
+    <h2>{% trans "Nos Services" %}</h2>
+
+    <div class="service-list">
+        <div class="service-card">
+            <h3>{% trans "Comptes Courants" %}</h3>
+            <p>{% trans "Des comptes fiables et adaptés à vos besoins quotidiens." %}</p>
+        </div>
+
+        <div class="service-card">
+            <h3>{% trans "Transactions Rapides" %}</h3>
+            <p>{% trans "Envoyez et recevez de l’argent instantanément." %}</p>
+        </div>
+
+        <div class="service-card">
+            <h3>{% trans "Support 24/7" %}</h3>
+            <p>{% trans "Notre équipe est disponible à tout moment." %}</p>
+        </div>
+    </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials" class="testimonials">
+    <h2>{% trans "Témoignages Clients" %}</h2>
+
+    <div class="testi-list">
+        <div class="testi-card">
+            <p>"{% trans "Une banque moderne et fiable, je recommande !" %}"</p>
+            <h4>— Anna K.</h4>
+        </div>
+
+        <div class="testi-card">
+            <p>"{% trans "Service rapide, interface professionnelle." %}"</p>
+            <h4>— Markus P.</h4>
+        </div>
+
+        <div class="testi-card">
+            <p>"{% trans "Le système multilingue aide énormément." %}"</p>
+            <h4>— Sofia L.</h4>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
