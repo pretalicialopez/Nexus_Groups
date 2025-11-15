@@ -29,6 +29,11 @@ def init_db():
     conn.close()
 
 init_db()
+
+
+
+
+
 def init_transactions():
     conn = get_db_connection()
     c = conn.cursor()
