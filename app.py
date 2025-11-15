@@ -3,6 +3,37 @@ from werkzeug.security import generate_password_hash, check_password_hash
 import sqlite3, os, json, smtplib
 from email.mime.text import MIMEText
 from dotenv import load_dotenv
+# --- Configuration de la base de données ---
+BASE_DIR = os.path.abspath(os.path.dirname(__file__))
+DB_PATH = os.path.join(BASE_DIR, "nexus.db")
+
+def get_db_connection():
+    conn = sqlite3.connect(DB_PATH, check_same_thread=False)
+    conn.row_factory = sqlite3.Row
+    return conn
+
+# Création automatique de la base si elle n’existe pas
+def init_db():
+    conn = get_db_connection()
+    c = conn.cursor()
+    c.execute('''
+        CREATE TABLE IF NOT EXISTS users (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            name TEXT NOT NULL,
+            email TEXT UNIQUE NOT NULL,
+            password TEXT NOT NULL,
+            balance REAL DEFAULT 0
+        )
+    ''')
+    conn.commit()
+    conn.close()
+
+init_db()
+conn = get_db_connection()
+cursor = conn.cursor()
+cursor.execute("INSERT INTO users (name, email, password) VALUES (?, ?, ?)", (name, email, hashed_password))
+conn.commit()
+conn.close()
 
 load_dotenv()
 
