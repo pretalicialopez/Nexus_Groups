@@ -34,6 +34,27 @@ cursor = conn.cursor()
 cursor.execute("INSERT INTO users (name, email, password) VALUES (?, ?, ?)", (name, email, hashed_password))
 conn.commit()
 conn.close()
+def init_transactions():
+    conn = get_db_connection()
+    c = conn.cursor()
+    c.execute('''
+        CREATE TABLE IF NOT EXISTS transactions (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            sender_id INTEGER,
+            receiver_id INTEGER,
+            amount REAL NOT NULL,
+            description TEXT,
+            date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+            FOREIGN KEY (sender_id) REFERENCES users (id),
+            FOREIGN KEY (receiver_id) REFERENCES users (id)
+        )
+    ''')
+    conn.commit()
+    conn.close()
+
+# Appel de la création de tables
+init_db()
+init_transactions()
 
 load_dotenv()
 
@@ -68,6 +89,17 @@ def init_db():
     conn.commit()
     conn.close()
 init_db()
+conn = get_db_connection()
+cursor = conn.cursor()
+cursor.execute('''
+    INSERT INTO transactions (sender_id, receiver_id, amount, description)
+    VALUES (?, ?, ?, ?)
+''', (sender_id, receiver_id, amount, description))
+conn.commit()
+conn.close()
+conn = get_db_connection()
+transactions = conn.execute('SELECT * FROM transactions WHERE sender_id = ? OR receiver_id = ?', (user_id, user_id)).fetchall()
+conn.close()
 
 # --- Multi-langues ---
 def load_translations(lang='fr'):
@@ -184,3 +216,45 @@ def logout():
 
 if __name__=="__main__":
     app.run(debug=True)
+@app.route('/transfer', methods=['POST'])
+def transfer():
+    sender_email = request.form.get('sender')
+    receiver_email = request.form.get('receiver')
+    amount = float(request.form.get('amount'))
+    description = request.form.get('description', '')
+
+    conn = get_db_connection()
+    cursor = conn.cursor()
+
+    # Vérifier que les comptes existent
+    sender = cursor.execute("SELECT * FROM users WHERE email=?", (sender_email,)).fetchone()
+    receiver = cursor.execute("SELECT * FROM users WHERE email=?", (receiver_email,)).fetchone()
+
+    if not sender or not receiver:
+        conn.close()
+        flash("Un des comptes n'existe pas.")
+        return redirect(url_for('dashboard'))
+
+    if sender['balance'] < amount:
+        conn.close()
+        flash("Solde insuffisant.")
+        return redirect(url_for('dashboard'))
+
+    # Mettre à jour les soldes
+    new_sender_balance = sender['balance'] - amount
+    new_receiver_balance = receiver['balance'] + amount
+
+    cursor.execute("UPDATE users SET balance=? WHERE id=?", (new_sender_balance, sender['id']))
+    cursor.execute("UPDATE users SET balance=? WHERE id=?", (new_receiver_balance, receiver['id']))
+
+    # Enregistrer la transaction
+    cursor.execute('''
+        INSERT INTO transactions (sender_id, receiver_id, amount, description)
+        VALUES (?, ?, ?, ?)
+    ''', (sender['id'], receiver['id'], amount, description))
+
+    conn.commit()
+    conn.close()
+
+    flash("Transfert effectué avec succès.")
+    return redirect(url_for('dashboard'))
