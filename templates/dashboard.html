@@ -38,3 +38,10 @@ const balanceChart = new Chart(ctx, {
 });
 </script>
 {% endblock %}
+<form action="/transfer" method="POST">
+  <input type="email" name="sender" placeholder="Email expéditeur" required>
+  <input type="email" name="receiver" placeholder="Email destinataire" required>
+  <input type="number" step="0.01" name="amount" placeholder="Montant" required>
+  <input type="text" name="description" placeholder="Description">
+  <button type="submit">Transférer</button>
+</form>
