@@ -1,36 +1,26 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="{{ LANGUAGE_CODE }}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nexus_Groups</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Nexus Groups Bank</title>
+
+    <!-- GOOGLE FONTS -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
+
 <body>
-<header>
-    <h1>Nexus_Groups</h1>
-    <form method="get" action="/set_lang" class="lang-selector">
-        <select name="lang" onchange="this.form.submit()">
-            <option value="fr" {% if session.get('lang')=='fr' %}selected{% endif %}>Français</option>
-            <option value="en" {% if session.get('lang')=='en' %}selected{% endif %}>English</option>
-            <option value="es" {% if session.get('lang')=='es' %}selected{% endif %}>Español</option>
-            <option value="de" {% if session.get('lang')=='de' %}selected{% endif %}>Deutsch</option>
-            <option value="it" {% if session.get('lang')=='it' %}selected{% endif %}>Italiano</option>
-            <option value="zh" {% if session.get('lang')=='zh' %}selected{% endif %}>中文</option>
-        </select>
-    </form>
+
+<header class="header">
+    <div class="logo">Nexus <span>Groups</span></div>
     <nav>
-        <a href="/">{{ t['dashboard'] }}</a>
-        {% if session.get('user_id') %}
-            <a href="/dashboard">{{ t['dashboard'] }}</a>
-            {% if session.get('username')=='admin' %}
-                <a href="/admin">Admin</a>
-            {% endif %}
-            <a href="/logout">{{ t['logout'] }}</a>
-        {% else %}
-            <a href="/login">Login</a>
-            <a href="/register">{{ t['create_account'] }}</a>
-        {% endif %}
+        <a href="{% url 'home' %}">{% trans "Accueil" %}</a>
+        <a href="#services">{% trans "Services" %}</a>
+        <a href="#testimonials">{% trans "Témoignages" %}</a>
+        <a href="{% url 'login' %}" class="btn-login">{% trans "Espace Client" %}</a>
     </nav>
 </header>
 
@@ -39,7 +29,8 @@
 </main>
 
 <footer>
-    &copy; 2025 Nexus_Groups - Tous droits réservés
+    <p>© 2025 Nexus Groups Bank — All rights reserved.</p>
 </footer>
+
 </body>
 </html>
