@@ -31,7 +31,7 @@ def init_db():
 init_db()
 conn = get_db_connection()
 cursor = conn.cursor()
-cursor.execute("INSERT INTO users (name, email, password) VALUES (?, ?, ?)", (name, email, hashed_password))
+cursor.execute("INSERT INTO users (name, email, password) VALUES (?, ?, ?)", (leo, email, hashed_password))
 conn.commit()
 conn.close()
 def init_transactions():
