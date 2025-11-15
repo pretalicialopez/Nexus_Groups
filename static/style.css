@@ -1,11 +1,204 @@
-body { font-family: 'Roboto', sans-serif; margin:0; background:#f4f6f8; }
-header { background:#00264d; color:white; padding:20px; text-align:center; }
-header nav a { color:white; margin:0 10px; text-decoration:none; }
-.hero { background:#e6f0ff; padding:60px 20px; text-align:center; }
-.hero .button { background:#004080; color:white; padding:10px 25px; border:none; border-radius:5px; text-decoration:none; }
-.testimonials { max-width:900px; margin:40px auto; text-align:center; }
-.testimonial { background:white; padding:20px; margin:20px; border-radius:10px; box-shadow:0 2px 8px rgba(0,0,0,0.1); }
-table { width:90%; margin:20px auto; border-collapse:collapse; }
-table, th, td { border:1px solid #ccc; }
-th, td { padding:10px; text-align:center; }
-footer { background:#00264d; color:white; text-align:center; padding:20px; margin-top:40px; }
+/* ---------------------------- */
+/* GLOBAL */
+/* ---------------------------- */
+body {
+    font-family: "Poppins", sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #f3f5f7;
+    color: #1a1a1a;
+}
+
+h1, h2, h3 {
+    font-weight: 600;
+}
+
+a {
+    text-decoration: none;
+}
+
+/* ---------------------------- */
+/* HEADER */
+/* ---------------------------- */
+.header {
+    background: #002855; /* Bleu profond type Nordea */
+    padding: 16px 45px;
+    color: #ffffff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header .logo {
+    font-size: 28px;
+    font-weight: 700;
+}
+
+.header .logo span {
+    color: #4da3ff; /* Bleu clair premium */
+}
+
+.header nav a {
+    margin: 0 15px;
+    color: #ffffff;
+    font-weight: 400;
+    transition: 0.3s;
+}
+
+.header nav a:hover {
+    color: #4da3ff;
+}
+
+.btn-login {
+    background: #4da3ff;
+    padding: 9px 15px;
+    border-radius: 6px;
+    font-weight: 500;
+}
+
+/* ---------------------------- */
+/* HERO SECTION */
+/* ---------------------------- */
+.hero {
+    background: linear-gradient(
+        rgba(0, 40, 85, 0.7),
+        rgba(0, 40, 85, 0.7)
+    ),
+    url("https://images.unsplash.com/photo-1521791055366-0d553872125f?auto=format") center/cover;
+    color: #ffffff;
+    padding: 150px 20px;
+    text-align: center;
+}
+
+.hero h1 {
+    font-size: 48px;
+    margin-bottom: 15px;
+}
+
+.hero p {
+    font-size: 18px;
+    margin-bottom: 25px;
+}
+
+.cta-btn {
+    background: #4da3ff;
+    padding: 14px 25px;
+    border-radius: 10px;
+    color: #ffffff;
+    font-size: 16px;
+    transition: 0.3s;
+}
+
+.cta-btn:hover {
+    background: #6bb7ff;
+}
+
+/* ---------------------------- */
+/* SERVICES */
+/* ---------------------------- */
+.services {
+    padding: 60px;
+    text-align: center;
+}
+
+.services h2 {
+    font-size: 32px;
+    margin-bottom: 25px;
+}
+
+.service-list {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+.service-card {
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 12px;
+    width: 290px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    transition: 0.3s;
+}
+
+.service-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+}
+
+.service-card h3 {
+    color: #002855;
+    margin-bottom: 10px;
+}
+
+/* ---------------------------- */
+/* TESTIMONIALS */
+/* ---------------------------- */
+.testimonials {
+    background: #e7edf3;
+    padding: 60px;
+}
+
+.testimonials h2 {
+    text-align: center;
+    font-size: 32px;
+}
+
+.testi-list {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 30px;
+    margin-top: 20px;
+}
+
+.testi-card {
+    background: #ffffff;
+    padding: 25px;
+    width: 260px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.testi-card p {
+    font-style: italic;
+    margin-bottom: 10px;
+}
+
+.testi-card h4 {
+    text-align: right;
+    color: #002855;
+}
+
+/* ---------------------------- */
+/* FOOTER */
+/* ---------------------------- */
+footer {
+    background: #002855;
+    text-align: center;
+    padding: 20px;
+    color: #ffffff;
+    margin-top: 30px;
+}
+
+/* ---------------------------- */
+/* RESPONSIVE */
+/* ---------------------------- */
+@media(max-width: 768px) {
+    .header {
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+    }
+
+    .service-list,
+    .testi-list {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .hero h1 {
+        font-size: 35px;
+    }
+}
